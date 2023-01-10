@@ -34,6 +34,18 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.admin = require('./admin')(sequelize, Sequelize);
+db.link = require('./link')(sequelize, Sequelize);
+db.category = require('./category')(sequelize, Sequelize);
+
+db.category.hasMany(db.link, {as: "Links"});
+db.link.belongsTo(db.category, {
+  foreignKey: {
+    name: "CategoryId",
+    allowNull: false
+  },
+  as: "Category"
+});
 
 sequelize.sync({force: true})
   .then(() => console.log('DB SYNC'))
