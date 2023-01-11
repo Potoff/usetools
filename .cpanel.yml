@@ -7,7 +7,6 @@ deployment:
     - /bin/cp -R models $DEPLOYPATH
     - /bin/cp -R public $DEPLOYPATH
     - /bin/cp -R routes $DEPLOYPATH
-    - /bin/cp -R seeders $DEPLOYPATH
     - /bin/cp -R views $DEPLOYPATH
     - /bin/cp .gitignore $DEPLOYPATH
     - /bin/cp app.js $DEPLOYPATH
