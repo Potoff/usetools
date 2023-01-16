@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const adminCtrl = require('../controllers/admin')
+const adminCtrl = require('../controllers/admin');
+const { admin } = require('../models');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+
+router.get('/', (req, res, next) => {
+  res.render('dashboard')
+})
+
+
 
 module.exports = router;

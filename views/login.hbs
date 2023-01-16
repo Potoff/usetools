@@ -1,0 +1,51 @@
+<div
+  class="uk-container uk-margin-xlarge-top uk-card uk-card-default uk-card-body"
+>
+  <div class="uk-card-body">
+    <form method="POST" action="/user/login" class="uk-form-stacked">
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text">Login :</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input"
+            id="login"
+            name="login"
+            type="text"
+            placeholder="Login"
+          />
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text">Mot de passe :</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input"
+            id="password"
+            name="password"
+            type="text"
+            placeholder="Password"
+          />
+        </div>
+      </div>
+      <button class="uk-button uk-button-default">Valider</button>
+    </form>
+  </div>
+
+  {{#if message}}
+    <div class="uk-alert-warning" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{ message }}</p>
+    </div>
+  {{/if}}
+
+  {{#if error}}
+    <div class="uk-alert-warning" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{ error }}</p>
+    </div>
+  {{/if}}
+
+
+</div>
