@@ -6,10 +6,10 @@ const { admin } = require('../models');
 
 /* GET users listing. */
 
-router.get('/', (req, res, next) => {
-  res.render('dashboard')
-})
+router.get('/', adminCtrl.dashboard);
 
+router.get('/newCategoryForm', adminCtrl.newCategoryForm);
+router.post('/newCategory', adminCtrl.newCategory);
 
 
 module.exports = router;

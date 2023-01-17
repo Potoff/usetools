@@ -1,7 +1,17 @@
 const db = require("../models");
 const Admin = db.admin;
+const Category = db.category;
 const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
+
+exports.dashboard = (req, res, next) => {
+  console.log('caca')
+  Category.findAll() 
+    .then((categories) => {
+      console.log(categories)
+      res.render('dashboard', {category: categories})
+    })
+};
 
 exports.signup = (req, res, next) => {
   bcrypt
@@ -32,4 +42,24 @@ exports.login = (req, res, next) => {
       res.render("login", { message: req.flash("error") });
     })
     .catch((error) => res.status(500).json({ error: error }));
+};
+
+exports.newCategoryForm = (req, res, next) => {
+  res.render('newCategoryForm');
+}
+
+exports.newCategory = (req, res, next) => {
+  const category = new db.Category({
+    name: req.body.name,
+    description: req.body.description
+  })
+  category.save()
+    .then((category) =>{
+      req.flash('message', 'La catégorie a bien été enregistrée')
+      res.render('newCategoryForm', {message: req.flash('message')})
+    })
+    .catch((err) => {
+      req.flash('error')
+      res.render('newCategoryForm', {error: err})
+    })
 };

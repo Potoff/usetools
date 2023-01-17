@@ -1,0 +1,64 @@
+<div>
+  <a
+    href="#offcanvas-slide"
+    uk-icon="menu"
+    class="uk-icon-button uk-margin-small-top uk-margin-small-left"
+    uk-toggle
+  ></a>
+
+  <div id="offcanvas-slide" uk-offcanvas>
+    <div class="uk-offcanvas-bar">
+
+      <ul class="uk-nav uk-nav-default">
+        <li class="uk-nav-header">Liens</li>
+        <li><a href="/admin">Ajouter un lien</a></li>
+        <li><a href="#">Liste des liens</a></li>
+        <li class="uk-nav-divider"></li>
+        <li class="uk-nav-header">Catégories</li>
+        <li class="uk-active"><a href="#">Ajouter une catégorie</a></li>
+        <li><a href="#">Liste des catégories</a></li>
+        <li class="uk-nav-divider"></li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+  <div
+  class="uk-container uk-margin-xlarge-top uk-card uk-card-default uk-card-body"
+>
+<h3>Ajouter une catégorie</h3>
+  <div class="uk-card-body">
+    <form method="post" action="/admin/newCategory" class="uk-form-stacked">
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text">Nom :</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input"
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Nom"
+          />
+        </div>
+      </div>
+    <div class="uk-margin">
+        <textarea class="uk-textarea" name="description" id="description" cols="15" rows="5" placeholder="Description" aria-label="Textarea"></textarea>
+        </div>
+      <button class="uk-button uk-button-default" type="submit">Valider</button>
+    </form>
+    {{#if message}}
+    <div class="uk-alert-success" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{ message }}</p>
+    </div>
+  {{/if}}
+
+  {{#if error}}
+  
+  <div class="uk-alert-warning" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{ error }}</p>
+    </div>
+  {{/if}}
+  </div>

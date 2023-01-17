@@ -37,7 +37,6 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/user", userRouter);
 app.use(
   "/admin",
   (req, res, next) => {
@@ -52,7 +51,7 @@ app.use(
   },
   adminRouter
 );
-
+app.use("/user", userRouter);
 app.use("/", indexRouter);
 
 
