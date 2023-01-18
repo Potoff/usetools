@@ -5,12 +5,11 @@ const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
 
 exports.dashboard = (req, res, next) => {
-  console.log('caca')
-  Category.findAll() 
-    .then((categories) => {
-      console.log(categories)
-      res.render('dashboard', {category: categories})
-    })
+  console.log("caca");
+  Category.findAll().then((categories) => {
+    console.log(categories);
+    res.render("dashboard", { category: categories });
+  });
 };
 
 exports.signup = (req, res, next) => {
@@ -33,7 +32,7 @@ exports.login = (req, res, next) => {
   Admin.findOne({ where: { login: req.body.login } })
     .then((user) => {
       if (req.isAuthenticated()) {
-        res.redirect('/admin/dashboard');
+        res.redirect("/admin/dashboard");
       }
       req.flash(
         "error",
@@ -45,21 +44,46 @@ exports.login = (req, res, next) => {
 };
 
 exports.newCategoryForm = (req, res, next) => {
-  res.render('newCategoryForm');
-}
+  res.render("newCategoryForm");
+};
 
 exports.newCategory = (req, res, next) => {
   const category = new db.Category({
     name: req.body.name,
-    description: req.body.description
-  })
-  category.save()
-    .then((category) =>{
-      req.flash('message', 'La catégorie a bien été enregistrée')
-      res.render('newCategoryForm', {message: req.flash('message')})
+    description: req.body.description,
+  });
+  category
+    .save()
+    .then((category) => {
+      req.flash("message", "La catégorie a bien été enregistrée");
+      res.render("newCategoryForm", { message: req.flash("message") });
     })
     .catch((err) => {
-      req.flash('error')
-      res.render('newCategoryForm', {error: err})
-    })
+      req.flash("error");
+      res.render("newCategoryForm", { error: err });
+    });
+};
+
+exports.newLink = (req, res, next) => {
+  const link = new db.link(
+    {
+      name: req.body.name,
+      url: req.body.url,
+      description: req.body.description,
+      img_url: req.body.img_url,
+      categoryId: req.body.categoryId,
+    },
+    {
+      include: [
+        {
+          model: db.category,
+          as: "Category",
+        },
+      ],
+    }
+  );
+  link.save().then((link) => {
+    req.flash("message", "Lien ajouté avec succés.");
+    res.render("dashboard", { message: req.flash("message") });
+  });
 };

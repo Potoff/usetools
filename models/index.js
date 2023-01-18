@@ -47,7 +47,7 @@ db.link.belongsTo(db.category, {
   as: "Category"
 });
 
-sequelize.sync({force: true})
+sequelize.sync()
   .then(() => console.log('DB SYNC'))
   .catch((err) => {
     console.log({err: err})

@@ -10,6 +10,6 @@ router.get('/', adminCtrl.dashboard);
 
 router.get('/newCategoryForm', adminCtrl.newCategoryForm);
 router.post('/newCategory', adminCtrl.newCategory);
-
+router.post('/newLink', adminCtrl.newLink);
 
 module.exports = router;

@@ -29,7 +29,7 @@
 >
 <h3>Ajouter un lien</h3>
   <div class="uk-card-body">
-    <form method="POST" action="/admin/newLink" class="uk-form-stacked">
+    <form method="post" action="/admin/newLink" class="uk-form-stacked">
     <div class="uk-margin">
         <label class="uk-form-label" for="form-stacked-text">Nom :</label>
         <div class="uk-form-controls">
@@ -39,6 +39,7 @@
             name="name"
             type="text"
             placeholder="Nom"
+            required
           />
         </div>
       </div>
@@ -51,6 +52,7 @@
             name="url"
             type="text"
             placeholder="Url"
+            required
           />
         </div>
       </div>
@@ -71,7 +73,7 @@
         </div>
       </div>
       <div class="uk-margin">
-            <select class="uk-select" aria-label="Select" id="category" name="category" required>
+            <select class="uk-select" aria-label="Select" id="categoryId" name="categoryId" required>
                 <option selected value="">Choix de la catégorie :</option>
                 {{#each category}}
                 <option value={{id}}>{{name}}</option>
@@ -82,17 +84,16 @@
       <button class="uk-button uk-button-default">Valider</button>
     </form>
     {{#if message}}
-    <div class="uk-alert-warning" uk-alert>
+    <div class="uk-alert-success" uk-alert>
       <a class="uk-alert-close" uk-close></a>
       <p>{{ message }}</p>
     </div>
   {{/if}}
-
   {{#if error}}
-  
   <div class="uk-alert-warning" uk-alert>
       <a class="uk-alert-close" uk-close></a>
       <p>{{ error }}</p>
     </div>
   {{/if}}
   </div>
+</div>
