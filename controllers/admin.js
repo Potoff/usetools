@@ -82,8 +82,13 @@ exports.newLink = (req, res, next) => {
       ],
     }
   );
-  link.save().then((link) => {
+  link.save()
+  .then((link) => {
     req.flash("message", "Lien ajouté avec succés.");
     res.render("dashboard", { message: req.flash("message") });
-  });
+  })
+  .catch((err) => {
+    req.flash("error");
+    res.render("dashboard", { error: err});
+  })
 };

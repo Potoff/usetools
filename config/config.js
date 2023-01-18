@@ -19,7 +19,7 @@ module.exports = {
   production: {
     username: DB_USERNAME,
     password: DB_PASSWORD,
-    database: "database_production",
+    database: "bips0889_usetools",
     host: DB_HOST,
     dialect: "postgres",
   },
