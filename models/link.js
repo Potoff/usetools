@@ -21,14 +21,14 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         notEmpty: true
       },
-      categoryId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Categories",
-          key: "id",
-        },
-      },
+      // categoryId: {
+      //   type: Sequelize.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: "Categories",
+      //     key: "id",
+      //   },
+      // },
     },
     {
       timestamps: false,

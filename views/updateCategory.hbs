@@ -12,24 +12,25 @@
       <ul class="uk-nav uk-nav-default">
         <li class="uk-nav-header">Liens</li>
         <li><a href="/admin">Ajouter un lien</a></li>
-        <li><a href="/admin/allLink">Liste des liens</a></li>
+        <li class=""><a href="/admin/allLink">Liste des liens</a></li>
         <li class="uk-nav-divider"></li>
         <li class="uk-nav-header">Catégories</li>
-        <li class="uk-active"><a href="#">Ajouter une catégorie</a></li>
-        <li><a href="/admin/allCategories">Liste des catégories</a></li>
+        <li><a href="/admin/newCategoryForm">Ajouter une catégorie</a></li>
+        <li><a href="/admin/allCategories">Liste des
+            catégories</a></li>
         <li class="uk-nav-divider"></li>
       </ul>
-
     </div>
   </div>
 </div>
 
-  <div
+ <div
   class="uk-container uk-margin-xlarge-top uk-card uk-card-default uk-card-body"
 >
-<h3>Ajouter une catégorie</h3>
+<h3>Modifier une catégorie</h3>
+{{#category}}
   <div class="uk-card-body">
-    <form method="post" action="/admin/newCategory" class="uk-form-stacked">
+    <form method="post" action="/admin/updateCategory/{{id}}" class="uk-form-stacked">
     <div class="uk-margin">
         <label class="uk-form-label" for="form-stacked-text">Nom :</label>
         <div class="uk-form-controls">
@@ -38,13 +39,14 @@
             id="name"
             name="name"
             type="text"
-            placeholder="Nom"
+            value="{{name}}"
           />
         </div>
       </div>
     <div class="uk-margin">
-        <textarea class="uk-textarea" name="description" id="description" cols="15" rows="5" placeholder="Description" aria-label="Textarea"></textarea>
+        <textarea class="uk-textarea" name="description" id="description" cols="15" rows="5" value="{{description}}" aria-label="Textarea">{{description}}</textarea>
         </div>
+        {{/category}}
       <button class="uk-button uk-button-default" type="submit">Valider</button>
     </form>
     {{#if message}}
@@ -61,4 +63,6 @@
       <p>{{ error }}</p>
     </div>
   {{/if}}
+  
   </div>
+

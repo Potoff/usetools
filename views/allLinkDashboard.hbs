@@ -1,0 +1,68 @@
+<div>
+  <a
+    href="#offcanvas-slide"
+    uk-icon="menu"
+    class="uk-icon-button uk-margin-small-top uk-margin-small-left"
+    uk-toggle
+  ></a>
+
+  <div id="offcanvas-slide" uk-offcanvas>
+    <div class="uk-offcanvas-bar">
+
+      <ul class="uk-nav uk-nav-default">
+        <li class="uk-nav-header">Liens</li>
+        <li><a href="/admin">Ajouter un lien</a></li>
+        <li class="uk-active"><a href="/admin/allLink">Liste des liens</a></li>
+        <li class="uk-nav-divider"></li>
+        <li class="uk-nav-header">Catégories</li>
+        <li><a href="/admin/newCategoryForm">Ajouter une catégorie</a></li>
+        <li><a href="/admin/allCategories">Liste des catégories</a></li>
+        <li class="uk-nav-divider"></li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="uk-container">
+  {{#if message}}
+    <div class="uk-alert-success" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{message}}</p>
+    </div>
+  {{/if}}
+  {{#if error}}
+    <div class="uk-alert-warning" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{error}}</p>
+    </div>
+  {{/if}}
+  {{#each categories}}
+    <div class="uk-section">
+      <div class="container">
+        <h3>{{name}}</h3>
+        {{#Links}}
+          <div class="uk-flex uk-flex-between uk-flex-stretch">
+            <div class="uk-margin-small-right">{{name}}</div><a
+              href="{{url}}"
+            >{{url}}</a>
+            <div>{{description}}</div>
+            <form method="get" action="/admin/updateLink/{{id}}"><button
+                type="submit"
+                class="uk-icon-link"
+                uk-icon="pencil"
+              ></button></form><form
+              method="post"
+              action="/admin/killLink/{{id}}"
+            ><button
+                type="submit"
+                class="uk-icon-link"
+                uk-icon="trash"
+              ></button></form>
+          </div>
+        {{/Links}}
+      </div>
+    </div>
+    <hr class="uk-divider-icon" />
+  {{/each}}
+</div>

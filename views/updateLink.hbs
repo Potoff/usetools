@@ -5,31 +5,30 @@
     class="uk-icon-button uk-margin-small-top uk-margin-small-left"
     uk-toggle
   ></a>
-
   <div id="offcanvas-slide" uk-offcanvas>
     <div class="uk-offcanvas-bar">
-
       <ul class="uk-nav uk-nav-default">
         <li class="uk-nav-header">Liens</li>
-        <li class="uk-active"><a href="#">Ajouter un lien</a></li>
-        <li><a href="/admin/allLink">Liste des liens</a></li>
+        <li><a href="/admin">Ajouter un lien</a></li>
+        <li class=""><a href="/admin/allLink">Liste des liens</a></li>
         <li class="uk-nav-divider"></li>
         <li class="uk-nav-header">Catégories</li>
         <li><a href="/admin/newCategoryForm">Ajouter une catégorie</a></li>
-        <li><a href="/admin/allCategories">Liste des catégories</a></li>
+        <li><a href="/admin/allCategories">Liste des
+            catégories</a></li>
         <li class="uk-nav-divider"></li>
       </ul>
-
     </div>
   </div>
 </div>
 
-  <div
+<div
   class="uk-container uk-margin-medium-top uk-card uk-card-default uk-card-body"
 >
-<h3>Ajouter un lien</h3>
+<h3>Modifier un lien</h3>
+{{#link}}
   <div class="uk-card-body">
-    <form method="post" action="/admin/newLink" class="uk-form-stacked">
+    <form method="post" action="/admin/updateLink/{{id}}" class="uk-form-stacked">
     <div class="uk-margin">
         <label class="uk-form-label" for="form-stacked-text">Nom :</label>
         <div class="uk-form-controls">
@@ -38,7 +37,7 @@
             id="name"
             name="name"
             type="text"
-            placeholder="Nom"
+            value="{{name}}"
             required
           />
         </div>
@@ -51,13 +50,13 @@
             id="url"
             name="url"
             type="text"
-            placeholder="Url"
+            value="{{url}}"
             required
           />
         </div>
       </div>
       <div class="uk-margin">
-        <textarea class="uk-textarea" name="description" id="description" cols="15" rows="5" placeholder="Description" aria-label="Textarea"></textarea>
+        <textarea class="uk-textarea" name="description" id="description" cols="15" rows="5" placeholder="{{description}}" aria-label="Textarea">{{description}}</textarea>
         </div>
       </div>
       <div class="uk-margin">
@@ -68,20 +67,22 @@
             id="img_url"
             name="img_url"
             type="text"
-            placeholder="URL de l'image"
+            value="{{img_url}}"
           />
         </div>
       </div>
+      
       <div class="uk-margin">
             <select class="uk-select" aria-label="Select" id="categoryId" name="categoryId" required>
-                <option selected value="">Choix de la catégorie :</option>
-                {{#each category}}
+                <option selected value="{{Category.id}}">{{Category.name}}</option>
+                {{/link}}
+                {{#categories}}
                 <option value={{id}}>{{name}}</option>
-                {{/each}}
+                {{/categories}}
             </select>
         </div>
-
-      <button class="uk-button uk-button-default">Valider</button>
+        
+      <button class="uk-button uk-button-default" type="submit">Valider</button>
     </form>
     {{#if message}}
     <div class="uk-alert-success" uk-alert>

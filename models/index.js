@@ -38,14 +38,8 @@ db.admin = require('./admin')(sequelize, Sequelize);
 db.link = require('./link')(sequelize, Sequelize);
 db.category = require('./category')(sequelize, Sequelize);
 
-db.category.hasMany(db.link, {as: "Links"});
-db.link.belongsTo(db.category, {
-  foreignKey: {
-    name: "CategoryId",
-    allowNull: false
-  },
-  as: "Category"
-});
+db.category.hasMany(db.link, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+db.link.belongsTo(db.category, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
 sequelize.sync()
   .then(() => console.log('DB SYNC'))
