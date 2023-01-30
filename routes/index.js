@@ -3,11 +3,10 @@ const router = express.Router();
 const db = require('../models');
 const Admin = db.admin;
 const bcrypt = require('bcrypt')
+const userCtrl = require('../controllers/user')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', userCtrl.index);
 
 // router.post('/newAdmin', function(req, res, next) {
 //   bcrypt.hash(req.body.password, 10)

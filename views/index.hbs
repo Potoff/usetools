@@ -1,11 +1,39 @@
 <div class="uk-container">
-  <nav class="uk-navbar-container uk-navbar" >
+  <nav class="uk-navbar-container uk-navbar uk-navbar-transparent">
     <div class="uk-navbar-left">
       <ul class="uk-navbar-nav">
-        <li class="uk-active"><a href="">zob</a></li>
-        <li class="uk-parent"><a href="">poule</a></li>
+        <li class="uk-active"><a href=""></a></li>
+        <li class="uk-parent"><a href=""></a></li>
         <li><a href=""></a></li>
       </ul>
     </div>
   </nav>
+</div>
+<div class="uk-container uk-margin-large-top">
+  <div class="uk-grid uk-child-width-expand uk-margin-auto">
+    <div class="uk-flex uk-flex-between uk-flex-wrap">
+      {{#each links}}
+      <div class="uk-card uk-card-small uk-width-1-2@m uk-card-default uk-card-hover uk-margin-small-top uk-grid">
+        <div class="uk-card-media-left uk-cover-container">
+        <img src="{{img_url}}" alt="" uk-cover class="uk-padding-small">
+        <canvas width="75px" height="75px" class=""></canvas>
+    </div>
+        <div class="uk-padding-small">
+          <div class="uk-card-body">
+            <h4 class="uk-margin-small-top">{{name}}</h4>
+            <p>{{description}}</p>
+            <div class="uk-card-badge uk-label">{{Category.name}}</div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="uk-width-1-3 uk-height-viewport="expand: true"">
+      <div class="uk-flex uk-flex-wrap uk-flex-between@s ">
+      {{#each categories}}
+        <a class="uk-button uk-button-default uk-button-small uk-margin-small-top uk-margin-small-right" href="">{{name}}</a>
+      {{/each}}
+      </div>
+    </div>
+  </div>
 </div>
