@@ -41,7 +41,7 @@ db.category = require('./category')(sequelize, Sequelize);
 db.category.hasMany(db.link, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 db.link.belongsTo(db.category, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
-sequelize.sync({force: true})
+sequelize.sync()
   .then(() => console.log('DB SYNC'))
   .catch((err) => {
     console.log({err: err})
