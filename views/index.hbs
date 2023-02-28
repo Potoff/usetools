@@ -23,6 +23,7 @@
           <div class="uk-card-body">
             <h4 class="uk-margin-small-top">{{name}}</h4>
             <p>{{description}}</p>
+            <a href="{{url}}">{{url}}</a>
             <div class="uk-card-badge uk-label">{{Category.name}}</div>
           </div>
         </div>
@@ -36,5 +37,26 @@
       {{/each}}
       </div>
     </div>
+  </div>
+  <div>
+    <ul class="uk-pagination uk-flex-center uk-margin-medium-top" uk-margin>
+      {{#if pagination.prevPage}}
+      <li class="">
+        <a class="" href="?page={{pagination.prevPage}}&limit={{pagination.limit}}"><span class="uk-margin-small-right" uk-pagination-previous></span>Page précédente</a>
+      </li>
+    {{/if}}
+   {{#each pagination.pages}}
+   {{#if this.isCurrent}}
+      <li class="uk-active uk-disabled uk-text-bolder uk-text-emphasis"><a href="">{{this.page}}</a></li>
+      {{else}}
+      <li class="uk-disabled uk-text-muted"><a href="">{{this.page}}</a></li>
+      {{/if}}
+   {{/each}}
+   {{#if pagination.nextPage}}
+      <li class="">
+        <a class="" href="?page={{pagination.nextPage}}&limit={{pagination.limit}}">Page suivante<span class="uk-margin-small-left" uk-pagination-next></span></a>
+      </li>
+    {{/if}}
+</ul>
   </div>
 </div>
